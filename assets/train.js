@@ -15,15 +15,15 @@
     event.preventDefault();
 
     var keyName = $('#trainNameInput').val().trim();
-    var keyPlace = $('#destinationInput').val().trim();
+    var keyDest = $('#destinationInput').val().trim();
     var keyStart = moment($('#startInput').val().trim(), "HH:mm").format("HH:mm");
-    var keyInterval = $('#frequencyInput').val().trim();
+    var keyFreq = $('#frequencyInput').val().trim();
 
     var newTrain = {
       name: keyName,
-      destination: keyPlace,
+      destination: keyDest,
       start: keyStart,
-      frequency: keyInterval
+      frequency: keyFreq
     }
 
     database.ref().push(newTrain);
@@ -47,14 +47,14 @@
     console.log(childSnapshot.val());
 
     var keyName = childSnapshot.val().name;
-    var keyPlace = childSnapshot.val().destination;
+    var keyDest = childSnapshot.val().destination;
     var keyStart = childSnapshot.val().start;
-    var keyInterval = childSnapshot.val().frequency;
+    var keyFreq = childSnapshot.val().frequency;
 
     console.log(keyName);
-    console.log(keyPlace);
+    console.log(keyDest);
     console.log(keyStart);
-    console.log(keyInterval);
+    console.log(keyFreq);
 
     
     // First Train Time (pushed back 1 year to make sure it comes before current time)
@@ -70,11 +70,11 @@
     console.log("DIFFERENCE IN TIME: " + diffTime);
 
     // Time apart (remainder)
-    var trnRem = diffTime % keyInterval;
+    var trnRem = diffTime % keyFreq;
     console.log(trnRem);
 
     // Minute Until Train
-    var minAway = keyInterval - trnRem;
+    var minAway = keyFreq - trnRem;
     console.log("MINUTES TILL TRAIN: " + minAway);
 
     // Next Train
@@ -82,7 +82,7 @@
     console.log("ARRIVAL TIME: " + moment(nextArrival).format("HH:mm"));
 
 
-    $("#trainTable > tbody").append("<tr><td>" + keyName + "</td><td>" + keyPlace + "</td><td>" + keyInterval + "</td><td>" + moment(nextArrival).format("HH:mm") + "</td><td>" + minAway + "</td><tr>");
+    $("#trainTable > tbody").append("<tr><td>" + keyName + "</td><td>" + keyDest + "</td><td>" + keyFreq + "</td><td>" + moment(nextArrival).format("HH:mm") + "</td><td>" + minAway + "</td><tr>");
 
 
 

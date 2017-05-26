@@ -21,7 +21,7 @@
 
     var newTrain = {
       name: keyName,
-      destination: keyDest,
+      dest: keyDest,
       start: keyStart,
       frequency: keyFreq
     }
@@ -29,7 +29,7 @@
     database.ref().push(newTrain);
 
     console.log(newTrain.name);
-    console.log(newTrain.destination);
+    console.log(newTrain.dest);
     console.log(newTrain.start);
     console.log(newTrain.frequency)
 
@@ -47,7 +47,7 @@
     console.log(childSnapshot.val());
 
     var keyName = childSnapshot.val().name;
-    var keyDest = childSnapshot.val().destination;
+    var keyDest = childSnapshot.val().dest;
     var keyStart = childSnapshot.val().start;
     var keyFreq = childSnapshot.val().frequency;
 
